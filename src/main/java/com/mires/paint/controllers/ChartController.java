@@ -1,5 +1,6 @@
 package com.mires.paint.controllers;
 
+import com.mires.paint.common.Common;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -14,8 +15,7 @@ import java.util.Optional;
 @RequestMapping("/chart")
 public class ChartController {
 
-    private static final String API_KEY = "TRX7K40CURWHE2D0";
-    private static final String BASE_CHART_URL = "https://api.thingspeak.com/channels/2894268/charts/1";
+    private static final String BASE_CHART_URL = "https://api.thingspeak.com/channels/" + Common.CHANNEL_ID + "/charts/1";
 
     @GetMapping(value = "", produces = MediaType.TEXT_HTML_VALUE)
     @CrossOrigin
@@ -49,7 +49,7 @@ public class ChartController {
             Optional<String> end
     ) {
         StringBuilder urlBuilder = new StringBuilder(BASE_CHART_URL)
-                .append("?api_key=").append(API_KEY)
+                .append("?api_key=").append(Common.READ_KEY)
                 .append("&color=000000");
 
         title.ifPresent(t -> urlBuilder.append("&title=").append(encode(t)));
