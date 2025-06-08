@@ -1,6 +1,6 @@
 Dostępne ścieżki
 
-- http://152.70.175.119:8080/api/chart
+- http://localhost:8080/api/chart
 Metoda: GET
 Co robi: Generuje wykres z ThingSpeak z danych o podanych datach
 Możliwe opcje do dodania:
@@ -18,27 +18,27 @@ Sposób użycia: np.
         width="480"
         height="640"
         style="border: 1px solid #cccccc;"
-        src="http://152.70.175.119:8080/api/chart?title=Test%205&start=2025-06-08%2012:50:00&end=2025-06-08%2013:20:00">
+        src="http://localhost:8080/api/chart?title=Test%205&start=2025-06-08%2012:50:00&end=2025-06-08%2013:20:00">
     </iframe>
 
-- http://152.70.175.119:8080/api/feeds
+- http://localhost:8080/api/feeds
 Metoda: GET
 Co robi: zwraca listę wszystkich danych, które są w bazie ThingSpeak
 Możliwe opcje do dodania: brak
 Zwraca: listę w formacie JSON
 Sposób użycia: jak ścieżka
 
-- http://152.70.175.119:8080/api/feeds/range
+- http://localhost:8080/api/feeds/range
 Metoda: GET
 Co robi: zwraca listę danych z danego zakresu dat.
 Możliwe opcje do dodania: 
 	!!!!WYMAGANE!!!! start - data od której ma zacząć zbierać dane do wyświetlenia (w formacie YYYY-MM-DD%20HH:mm:ss) !!!!WYMAGANE!!!!
 	!!!!WYMAGANE!!!! end - data do której ma zakończyć zbierać dane do wyświetlenia (w formacie YYYY-MM-DD%20HH:mm:ss) !!!!WYMAGANE!!!!
 Zwraca: listę w formacie JSON
-Sposób użycia: http://152.70.175.119:8080/api/feeds/range?start=2025-06-08%2012:50:00&end=2025-06-08%2013:20:00
+Sposób użycia: http://localhost:8080/api/feeds/range?start=2025-06-08%2012:50:00&end=2025-06-08%2013:20:00
 
 
-- http://152.70.175.119:8080/api/feeds/edit
+- http://localhost:8080/api/feeds/edit
 Metoda: POST
 Co robi: modyfikuje dany feed
 Request Body: 
@@ -51,10 +51,10 @@ Request Body:
             "field3": "1.776"
         }
 Zwraca: listę w formacie JSON
-Sposób użycia: http://152.70.175.119:8080/api/feeds/range?start=2025-06-08%2012:50:00&end=2025-06-08%2013:20:00
+Sposób użycia: http://localhost:8080/api/feeds/range?start=2025-06-08%2012:50:00&end=2025-06-08%2013:20:00
 
 
-- http://152.70.175.119:8080/api/feeds/push-edits
+- http://localhost:8080/api/feeds/push-edits
 Metoda: GET
 Co robi: wysyla zmienione feedsy do bazy ThingSpeak
 Możliwe opcje do dodania: 
@@ -62,7 +62,7 @@ Zwraca: response od ThingSpeak
 Sposób użycia: ścieżka
 
 
-- http://152.70.175.119:8080/api/users/create
+- http://localhost:8080/api/users/create
 Metoda: POST
 Co robi: tworzy nowego użytkownika
 Request Body: user w formacie JSON (schemat poniżej)
@@ -90,7 +90,7 @@ Zwraca: w przypadku powodzenia (obiekt Usera oraz ErrorResponse jako null)
 Sposób użycia: ścieżka
 
 
-- http://152.70.175.119:8080/api/users/login
+- http://localhost:8080/api/users/login
 Metoda: POST
 Co robi: sprawdza czy dany login i hasło pasują do któregoś z użytkowników w bazie danych.
 Request Body: LoginRequest w formacie JSON (schemat poniżej)
@@ -125,7 +125,7 @@ w przypadku niepowodzenia (i taki schemat jest prawie wszędzie, w zależności 
 Sposób użycia: ścieżka
 
 
-- http://152.70.175.119:8080/api/users/edit
+- http://localhost:8080/api/users/edit
 Metoda: POST
 Co robi: modyfikuje dane o użytkowniku
 Request Body: User w formacie JSON (schemat poniżej)
@@ -166,7 +166,7 @@ w przypadku niepowodzenia (i taki schemat jest prawie wszędzie, w zależności 
 Sposób użycia: ścieżka
 
 
-- http://152.70.175.119:8080/api/users/delete
+- http://localhost:8080/api/users/delete
 Metoda: POST
 Co robi: modyfikuje dane o użytkowniku
 Request Body: User w formacie JSON (schemat poniżej)
@@ -197,6 +197,12 @@ w przypadku niepowodzenia (i taki schemat jest prawie wszędzie, w zależności 
     }
 }
 
+Sposób użycia: ścieżka
+
+- http://localhost:8080/api/users/list
+Metoda: GET
+Co robi: wyswietla listę wszystkich użytkowników
+Zwraca: listę użytkowników w formacie JSON
 Sposób użycia: ścieżka
 
 

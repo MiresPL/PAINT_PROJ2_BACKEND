@@ -61,9 +61,6 @@ public class FeedService {
 
         final MongoCollection<Document> collection = database.getCollection(collectionName, Document.class);
 
-        System.out.println(feed.getCreated_at());
-        System.out.println(Instant.parse(feed.getCreated_at()).atZone(ZoneId.of("Europe/Warsaw")).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
-
         final Document doc = new Document("_id", feed.getEntry_id())
                 .append("created_at", Instant.parse(feed.getCreated_at()).atZone(ZoneId.of("Europe/Warsaw")).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME))
                 .append("field1", feed.getField1())

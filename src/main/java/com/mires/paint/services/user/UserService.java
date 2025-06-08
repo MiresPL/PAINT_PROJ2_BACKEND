@@ -13,7 +13,11 @@ import com.mongodb.reactivestreams.client.MongoCollection;
 import com.mongodb.reactivestreams.client.MongoDatabase;
 import org.bson.Document;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class UserService {
@@ -142,4 +146,19 @@ public class UserService {
                         return Mono.just(new UserResponse(null, new ErrorResponse("Invalid credentials", "The provided login or password is incorrect.")));
                 });
     }
+
+    public Mono<List<User>> listUsers() {
+        return Flux.from(database.getCollection("users", User.class).find())
+                .map(user -> new User(
+                        user.get_id(),
+                        user.getLogin(),
+                        user.getPassword(),
+                        user.getEmail(),
+                        user.getName(),
+                        user.getSurname(),
+                        user.getRole()
+                ))
+                .collectList();
+    }
+
 }

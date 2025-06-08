@@ -10,8 +10,10 @@ import com.mires.paint.services.user.UserService;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
+
 @RestController
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+@CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*")
 @RequestMapping("/api/users")
 public class UserController {
     private final UserService userService;
@@ -55,6 +57,11 @@ public class UserController {
         return userService.deleteUser(deleteRequest.getId())
                 .onErrorResume(e -> Mono.just(new UserResponse(null,
                         new ErrorResponse("Delete Error", e.getMessage()))));
+    }
+
+    @GetMapping("/list")
+    public Mono<List<User>> listUsers() {
+        return userService.listUsers();
     }
 }
 
